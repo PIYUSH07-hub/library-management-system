@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Return Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 6px 12px;
+            font-size: 14px;
+        }
+
+        ul {
+            color: green;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>Return a Book</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Return Book</button>
+    </form>
+
+    {% if messages %}
+        <h3>Messages:</h3>
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

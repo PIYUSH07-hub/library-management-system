@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Search Books</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+
+        input[type="text"] {
+            padding: 6px;
+            width: 300px;
+        }
+
+        button {
+            padding: 6px 12px;
+            margin-left: 5px;
+        }
+
+        ul {
+            margin-top: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Search Books</h2>
+
+    <form method="get" action="{% url 'search_books' %}">
+        <input type="text" name="q" placeholder="Search by title or author" value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if query %}
+        <h3>Results for "{{ query }}":</h3>
+        {% if books %}
+            <ul>
+                {% for book in books %}
+                    <li><strong>{{ book.title }}</strong> by {{ book.authors }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No books found.</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
